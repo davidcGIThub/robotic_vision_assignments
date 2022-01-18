@@ -10,7 +10,7 @@ camera_capture = cv2.VideoCapture(0)
 fourcc_code = cv2.VideoWriter_fourcc(*'XVID')
 
 # creating an output video writer object, parameters are (filename, fourcc code, fps, frame size)
-output_video = cv2.VideoWriter('output.avi', fourcc_code, 20.0, (640, 480))
+output_video = cv2.VideoWriter('task1.avi', fourcc_code, 20.0, (640, 480))
   
 isFrameCaptured = True
 
@@ -21,6 +21,7 @@ while(isFrameCaptured):
       
     # The original input frame is shown in the window 
     cv2.imshow('Original', frame)
+    output_video.write(frame)
       
     # Wait for 'a' key to stop the program 
     if cv2.waitKey(1) & 0xFF == ord('a'):
