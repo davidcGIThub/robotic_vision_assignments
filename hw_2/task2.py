@@ -16,12 +16,14 @@ half_of_window_size = (11,11)
 termination_criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 40, 0.001)
 world_points = np.zeros((number_of_inner_column_corners*number_of_inner_column_rows,3), np.float32)
 world_points[:,:2] = np.mgrid[0:number_of_inner_column_corners,0:number_of_inner_column_rows].T.reshape(-1,2)
+print("world_points: " , np.shape(world_points))
 world_points_array = []
 image_points_array = []
 for file in files:
     gray_image = cv.imread(file, cv.IMREAD_GRAYSCALE)
     return_value, corner_locations = cv.findChessboardCorners(gray_image, chessboard_shape)
     refined_corner_locations = cv.cornerSubPix(gray_image, corner_locations, half_of_window_size, zero_zone,termination_criteria)
+    print("refined_corner_locations: " , np.shape(refined_corner_locations))
     world_points_array.append(world_points)
     image_points_array.append(refined_corner_locations)
     # pattern_was_found = False
