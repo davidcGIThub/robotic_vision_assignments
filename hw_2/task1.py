@@ -17,4 +17,5 @@ refined_corner_locations = cv.cornerSubPix(gray_image, corner_locations, half_of
 pattern_was_found = False
 cv.drawChessboardCorners(image,chessboard_shape,refined_corner_locations,pattern_was_found)
 cv.imshow("chessboard_corners", image)
+cv.imwrite("chessboard_with_dots.jpg", image)
 cv.waitKey(0)

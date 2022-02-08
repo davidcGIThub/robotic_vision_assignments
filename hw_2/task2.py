@@ -6,7 +6,7 @@ import os
 #task 2
 
 image_directory = os.getcwd() + "/Calibration_Images_JPG"
-data_path = os.path.join(image_directory,'*.jpg') 
+data_path = os.path.join(image_directory,'*.jpg')
 files = glob.glob(data_path)
 number_of_inner_column_corners = 10 
 number_of_inner_column_rows = 7
@@ -23,7 +23,6 @@ for file in files:
     gray_image = cv.imread(file, cv.IMREAD_GRAYSCALE)
     return_value, corner_locations = cv.findChessboardCorners(gray_image, chessboard_shape)
     refined_corner_locations = cv.cornerSubPix(gray_image, corner_locations, half_of_window_size, zero_zone,termination_criteria)
-    print("refined_corner_locations: " , np.shape(refined_corner_locations))
     world_points_array.append(world_points)
     image_points_array.append(refined_corner_locations)
     # pattern_was_found = False
