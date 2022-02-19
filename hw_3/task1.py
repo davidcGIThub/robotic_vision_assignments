@@ -67,13 +67,4 @@ print("Right focal_length: " , right_focal_length)
 print("Right camera_matrix: " , right_camera_matrix)
 print("Right distortion_coeficients: " , right_distortion_coeficients)
 
-# np.save("right_intrinsic_parameters.npy", right_camera_matrix)
-# np.save("right_distortion_parameters.npy", right_distortion_coeficients)
-# np.save("left_intrinsic_parameters.npy", left_camera_matrix)
-# np.save("left_distortion_parameters.npy", left_distortion_coeficients)
-
-# np.save("world_points.npy" , world_points_array)
-# np.save("left_image_points.npy" , left_image_points_array)
-# np.save("right_image_points.npy" , right_image_points_array)
-
 

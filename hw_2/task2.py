@@ -73,4 +73,6 @@ np.save("right_distortion_parameters.npy", right_distortion_parameters)
 np.save("left_intrinsic_parameters.npy", left_camera_matrix)
 np.save("left_distortion_parameters.npy", left_distortion_parameters)
 np.save("fundamental_matrix.npy" , fundamental)
+np.save("rotation_between_cameras.npy" , rotation)
+np.save("translation_between_cameras.npy" , translation)
 
