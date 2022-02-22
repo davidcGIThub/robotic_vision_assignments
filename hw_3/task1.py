@@ -9,13 +9,14 @@ import os
 # Left Camera
 image_directory = os.getcwd() + "/LeftCalibrationPics"
 data_path = os.path.join(image_directory,'*.png')
-files = glob.glob(data_path)
+files = sorted(glob.glob(data_path))
 number_of_inner_column_corners = 10
 number_of_inner_column_rows = 7
 chessboard_shape = (number_of_inner_column_corners,number_of_inner_column_rows)
 zero_zone = (-1,-1)
 half_of_window_size = (11,11)
-termination_criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 40, 0.001)
+# termination_criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 40, 0.001)
+termination_criteria = None
 world_points = np.zeros((number_of_inner_column_corners*number_of_inner_column_rows,3), np.float32)
 world_points[:,:2] = np.mgrid[0:number_of_inner_column_corners,0:number_of_inner_column_rows].T.reshape(-1,2)
 world_points_array = []
@@ -40,13 +41,14 @@ print("Left distortion_coeficients: " , left_distortion_coeficients)
 # right_camera
 image_directory = os.getcwd() + "/RightCalibrationPics"
 data_path = os.path.join(image_directory,'*.png')
-files = glob.glob(data_path)
+files = sorted(glob.glob(data_path))
 number_of_inner_column_corners = 10
 number_of_inner_column_rows = 7
 chessboard_shape = (number_of_inner_column_corners , number_of_inner_column_rows)
 zero_zone = (-1 , -1)
 half_of_window_size = (11,11)
-termination_criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 40, 0.001)
+# termination_criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 40, 0.001)
+termination_criteria = None
 world_points = np.zeros((number_of_inner_column_corners*number_of_inner_column_rows,3), np.float32)
 world_points[:,:2] = np.mgrid[0:number_of_inner_column_corners,0:number_of_inner_column_rows].T.reshape(-1,2)
 world_points_array = []
@@ -66,5 +68,10 @@ right_focal_length = right_camera_matrix[0,0]
 print("Right focal_length: " , right_focal_length)
 print("Right camera_matrix: " , right_camera_matrix)
 print("Right distortion_coeficients: " , right_distortion_coeficients)
+
+np.save("right_intrinsic_parameters.npy", right_camera_matrix)
+np.save("right_distortion_parameters.npy", right_distortion_coeficients)
+np.save("left_intrinsic_parameters.npy" , left_camera_matrix)
+np.save("left_distortion_parameters.npy", left_distortion_coeficients)
 
 
