@@ -7,7 +7,6 @@ import os
 # finds the calibration parameters for the camera test images
 
 # Load parameters
-
 right_camera_matrix = np.load("right_intrinsic_parameters.npy")
 right_distortion_parameters = np.load("right_distortion_parameters.npy")
 left_camera_matrix = np.load("left_intrinsic_parameters.npy")
@@ -27,8 +26,13 @@ world_points = np.zeros((number_of_inner_column_corners*number_of_inner_column_r
 world_points[:,:2] = np.mgrid[0:number_of_inner_column_corners,0:number_of_inner_column_rows].T.reshape(-1,2)*3.88
 world_points_array = []
 left_image_points_array = []
+i = 0
 for file in files:
+    # print(i)
+    # i += 1
     gray_image = cv.imread(file, cv.IMREAD_GRAYSCALE)
+    # cv.imshow("calibration_image", gray_image)
+    # cv.waitKey(0)
     return_value, corner_locations = cv.findChessboardCorners(gray_image, chessboard_shape)
     refined_corner_locations = cv.cornerSubPix(gray_image, corner_locations, half_of_window_size, zero_zone,termination_criteria)
     world_points_array.append(world_points)
@@ -66,4 +70,6 @@ print("essential matrix: " , essential)
 print("fundamental: " , fundamental)
 # flags = cv.CALIB_FIX_INTRINSIC
 
+np.save("rotation_between_cameras.npy", rotation)
+np.save("translation_between_cameras.npy" , translation)
 np.save("fundamental_matrix.npy" , fundamental)

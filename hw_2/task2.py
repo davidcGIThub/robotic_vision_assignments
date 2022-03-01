@@ -34,7 +34,6 @@ image = cv.imread(image_directory + "/0.png", cv.IMREAD_GRAYSCALE)
 return_value, left_camera_matrix, left_distortion_parameters , rotation_vectors, translation_vectors = cv.calibrateCamera(world_points_array, left_image_points_array, np.shape(image), None, None)
 
 
-# 
 image_directory = os.getcwd() + "/StereoCalibrationPics/R"
 data_path = os.path.join(image_directory,'*.png')
 files = glob.glob(data_path)

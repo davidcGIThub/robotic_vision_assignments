@@ -24,25 +24,35 @@ left_distortion_parameters = np.load("left_distortion_parameters.npy")
 fundamental_matrix = np.load("fundamental_matrix.npy")
 rotation_matrix = np.load("rotation_between_cameras.npy")
 translation_matrix = np.load("translation_between_cameras.npy")
+print("fundamental: " , fundamental_matrix) 
+print("rotation_matrix: " , rotation_matrix) 
+print("translation_matrix: " , translation_matrix) 
 s = cv.stereoRectify(left_camera_matrix, left_distortion_parameters, 
                     right_camera_matrix, right_distortion_parameters, 
                     image_size, rotation_matrix, translation_matrix)
-left_rotation_matrix = s[0]
-right_rotation_matrix = s[1]
-left_projection_matrix = s[2]
-right_projection_matrix = s[3]
+left_rectification = s[0]
+right_rectification = s[1]
+left_projection = s[2]
+right_projection = s[3]
 disparity_depth_mapping = s[4]
+print("disparity_depth_mapping: " , disparity_depth_mapping)
 roi_left = s[5]
 roi_right = s[6]
+
+np.save("right_rectification.npy", right_rectification)
+np.save("right_projection.npy", right_projection)
+np.save("left_rectification.npy" , left_rectification)
+np.save("left_projection.npy", left_projection)
+np.save("disparity_depth_mapping.npy", disparity_depth_mapping)
 print("roi_left: " , roi_left)
 print("roi_right: " , roi_right)
 
 
 map1_x, map1_y = cv.initUndistortRectifyMap(left_camera_matrix, left_distortion_parameters,
-                                            left_rotation_matrix, left_projection_matrix,
+                                            left_rectification, left_projection,
                                             image_size, cv.CV_16SC2)
 map2_x, map2_y = cv.initUndistortRectifyMap(right_camera_matrix, right_distortion_parameters,
-                                            right_rotation_matrix, right_projection_matrix,
+                                            right_rectification, right_projection,
                                             image_size, cv.CV_16SC2)
 
 rectified_left_image = cv.remap(left_image, map1_x, map1_y,
