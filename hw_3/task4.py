@@ -12,9 +12,9 @@ gray_right_image = cv.cvtColor(right_image, cv.COLOR_RGB2GRAY)
 image_size = np.shape(gray_left_image)
 
 cv.imshow("Left Image", left_image)
-cv.waitKey(0)     
+cv.waitKey(0)
 cv.imshow("Right Image", right_image)
-cv.waitKey(0)           
+cv.waitKey(0)
 
 # load parameters
 right_camera_matrix = np.load("right_intrinsic_parameters.npy")
@@ -24,8 +24,8 @@ left_distortion_parameters = np.load("left_distortion_parameters.npy")
 fundamental_matrix = np.load("fundamental_matrix.npy")
 rotation_matrix = np.load("rotation_between_cameras.npy")
 translation_matrix = np.load("translation_between_cameras.npy")
-print("fundamental: " , fundamental_matrix) 
-print("rotation_matrix: " , rotation_matrix) 
+print("fundamental: " , fundamental_matrix)
+print("rotation_matrix: " , rotation_matrix)
 print("translation_matrix: " , translation_matrix) 
 s = cv.stereoRectify(left_camera_matrix, left_distortion_parameters, 
                     right_camera_matrix, right_distortion_parameters, 

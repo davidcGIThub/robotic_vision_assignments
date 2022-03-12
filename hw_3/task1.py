@@ -3,7 +3,7 @@ import numpy as np
 import glob
 import os
 
-#task 2
+#task 1
 # finds the calibration parameters for the camera test images
 
 # Left Camera
@@ -15,8 +15,8 @@ number_of_inner_column_rows = 7
 chessboard_shape = (number_of_inner_column_corners,number_of_inner_column_rows)
 zero_zone = (-1,-1)
 half_of_window_size = (11,11)
-# termination_criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 40, 0.001)
-termination_criteria = None
+termination_criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 40, 0.001)
+# termination_criteria = None
 world_points = np.zeros((number_of_inner_column_corners*number_of_inner_column_rows,3), np.float32)
 world_points[:,:2] = np.mgrid[0:number_of_inner_column_corners,0:number_of_inner_column_rows].T.reshape(-1,2)
 world_points_array = []
@@ -47,8 +47,8 @@ number_of_inner_column_rows = 7
 chessboard_shape = (number_of_inner_column_corners , number_of_inner_column_rows)
 zero_zone = (-1 , -1)
 half_of_window_size = (11,11)
-# termination_criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 40, 0.001)
-termination_criteria = None
+termination_criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 40, 0.001)
+# termination_criteria = None
 world_points = np.zeros((number_of_inner_column_corners*number_of_inner_column_rows,3), np.float32)
 world_points[:,:2] = np.mgrid[0:number_of_inner_column_corners,0:number_of_inner_column_rows].T.reshape(-1,2)
 world_points_array = []

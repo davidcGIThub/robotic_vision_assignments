@@ -39,9 +39,6 @@ for file in files:
     left_image_points_array.append(refined_corner_locations)
 world_points_array = world_points_array
 
-
-
-# 
 image_directory = os.getcwd() + "/StereoCalibrationPics/R"
 data_path = os.path.join(image_directory,'*.png')
 files = sorted(glob.glob(data_path))
